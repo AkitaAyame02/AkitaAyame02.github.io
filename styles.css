@@ -1,0 +1,152 @@
+/* Global Styles & Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333333;
+    background-color: #ffffff;
+    padding: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    padding-bottom: 12px;
+    border-bottom: 2px solid #333333;
+    margin-bottom: 24px;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Main Container Layout */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.content-section {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+/* Main Image Placeholder */
+#main-image {
+    flex: 1 1 50%;
+    height: 320px;
+}
+
+#main-image img {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+/* Text Content */
+.text-content {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* Placeholder Box Styling (Crossed X lines for wireframe) */
+.image {
+    border: 2px solid #333333;
+    position: relative;
+    background-color: #f9f9f9;
+    overflow: hidden;
+}
+
+/* Carousel Section */
+.carousel-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+}
+
+.nav-arrow {
+    background: none;
+    border: 2px solid #333333;
+    font-size: 20px;
+    font-weight: bold;
+    width: 36px;
+    height: 80px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-arrow:hover {
+    background-color: #eeeeee;
+}
+
+#thumbnails-grid {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.thumbnail {
+    flex: 1;
+    width: 140px;
+    height: 80px;
+    object-fit: cover;
+    filter: brightness(50%);
+}
+
+.active-thumb {
+    filter: brightness(100%);
+}
+
+.thumbnail img {
+    max-width: 100%;
+}
+
+/* Pagination Dots */
+.pagination-dots {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border: 2px solid #333333;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+    cursor: pointer;
+}
+
+.dot:hover {
+    background-color: #c5c5c5;
+}
+
+.active {
+    background-color: #333333;
+}

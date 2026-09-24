@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour Theory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!--This was the prompt that I gave it: "/create the html and css for the sketch of a colour theory website.  use lorem ipsum,  keep it simple, this is a prototype.  do not include js.  make the design simple."/ The sketch can be found in the images folder simply titled "sketch"-->
+
+    <header class="header">
+        <h1>COLOUR THEORY</h1>
+    </header>
+
+    <main class="main-container">
+        <section class="content-section">
+            <div class="image" id="main-image">
+                <img src="images/0.png">
+            </div>
+            <div class="text-content">
+                <h2 id="concept">Complementary</h2>
+                <p id="explanation">Complementary colours are colours that appear on opposite sides of the colour wheel.
+                    This combination of colours makes the other colour stand out, and is a classic combination.</p>
+            </div>
+        </section>
+
+        <section class="carousel-section">
+            <div class="carousel-controls">
+                <button class="nav-arrow" id="prev">&lt;</button>
+                <div id="thumbnails-grid">
+                    <div class="image thumbnail active-thumb">
+                        <img src="images/0.png">
+                    </div>
+                    <div class="image thumbnail">
+                        <img src="images/1.png">
+                    </div>
+                    <div class="image thumbnail">
+                        <img src="images/2.png">
+                    </div>
+                    <div class="image thumbnail">
+                        <img src="images/3.png">
+                    </div>
+                    <div class="image thumbnail">
+                        <img src="images/4.png">
+                    </div>
+                    <div class="image thumbnail">
+                        <img src="images/5.png">
+                    </div>
+                </div>
+                <button class="nav-arrow" id="next">&gt;</button>
+            </div>
+            <div id="pagination-dots">
+                <span class="dot" id="dot0"></span>
+                <span class="dot" id="dot1"></span>
+                <span class="dot" id="dot2"></span>
+                <span class="dot" id="dot3"></span>
+                <span class="dot" id="dot4"></span>
+                <span class="dot" id="dot5"></span>
+            </div>
+        </section>
+    </main>
+
+</body>
+<script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+<script>
+
+    //I can read this, but god help me with understanding.
+
+    let concept = [
+        "Complementary",
+        "Analagous",
+        "Split Complementary",
+        "Monochrome",
+        "Triadic",
+        "Tetradic"
+    ]
+
+    let explanation = [
+        "Complementary colours are colours that appear on opposite sides of the colour wheel. This combination of colours makes the other colour stand out, and is a classic combination.",
+        "Analagous colours are colours next to each other on the colour wheel. This helps make a cohesive colour palette while still having a variety of hues.",
+        "Split complementary is when you take a complementary of one colour, and use the colours next to it, creating a y-shape on the colour wheel. This is great if you like the complementary colour scheme, but want to do something different.",
+        "A monochromatic palette is when you create a palette only using light and dark shades of a singular hue.",
+        "The trdiadic colour palette is created when you use three evenly spaced colours from the colour wheel.",
+        "A simple way to create a tetradic colour palette is to take two complementary colours and use the colours next to them, like split complementary."
+    ]
+
+    let imageMain = [
+        '<img src="images/0.png">',
+        '<img src="images/1.png">',
+        '<img src="images/2.png">',
+        '<img src="images/3.png">',
+        '<img src="images/4.png">',
+        '<img src="images/5.png">',
+    ]
+
+    let imageIndex = 0;
+
+    let next = document.querySelector("#next");
+    let prev = document.querySelector('#prev');
+
+    next.addEventListener('click', nextImage);
+    prev.addEventListener('click', previousImage);
+
+    function nextImage() {
+        imageIndex++;
+
+        if (imageIndex === 6) {
+            imageIndex = 0;
+        }
+
+        document.querySelector('#concept').innerHTML = concept[imageIndex];
+        document.querySelector('#explanation').innerHTML = explanation[imageIndex];
+        document.querySelector('#main-image').innerHTML = imageMain[imageIndex];
+        document.querySelectorAll('.thumbnail')[imageIndex].classList.add('active-thumb');
+        document.querySelectorAll('.thumbnail')[imageIndex - 1].classList.remove('active-thumb');
+        document.querySelectorAll('.dot')[imageIndex].classList.add('active');
+        document.querySelectorAll('.dot')[imageIndex - 1].classList.remove('active'); //I can get the thumbnail highlights to circle around, but not the dots. So, here's my best attempt.
+    }
+
+    function previousImage() {
+        imageIndex--;
+
+        if (imageIndex === -1) {
+            imageIndex = 5;
+        }
+
+        document.querySelector('#concept').innerHTML = concept[imageIndex];
+        document.querySelector('#explanation').innerHTML = explanation[imageIndex];
+        document.querySelector('#main-image').innerHTML = imageMain[imageIndex];
+        document.querySelectorAll('.thumbnail')[imageIndex].classList.add('active-thumb');
+        document.querySelectorAll('.thumbnail')[imageIndex + 1].classList.remove('active-thumb');
+        document.querySelectorAll('.dot')[imageIndex].classList.add('active');
+        document.querySelectorAll('.dot')[imageIndex + 1].classList.remove('active');
+    }
+
+    let dot0 = document.querySelector('#dot0');
+    let dot1 = document.querySelector('#dot1');
+    let dot2 = document.querySelector('#dot2');
+    let dot3 = document.querySelector('#dot3');
+    let dot4 = document.querySelector('#dot4');
+    let dot5 = document.querySelector('#dot5');
+
+    dot0.addEventListener('click', function () {
+        imageIndex = 0;
+        document.querySelector('#concept').innerHTML = concept[imageIndex];
+        document.querySelector('#explanation').innerHTML = explanation[imageIndex];
+        document.querySelector('#main-image').innerHTML = imageMain[imageIndex];
+    })
+
+    dot1.addEventListener('click', function () {
+        imageIndex = 1;
+        document.querySelector('#concept').innerHTML = concept[imageIndex];
+        document.querySelector('#explanation').innerHTML = explanation[imageIndex];
+        document.querySelector('#main-image').innerHTML = imageMain[imageIndex];
+    })
+
+    dot2.addEventListener('click', function () {
+        imageIndex = 2;
+        document.querySelector('#concept').innerHTML = concept[imageIndex];
+        document.querySelector('#explanation').innerHTML = explanation[imageIndex];
+        document.querySelector('#main-image').innerHTML = imageMain[imageIndex];
+    })
+
+    dot3.addEventListener('click', function () {
+        imageIndex = 3;
+        document.querySelector('#concept').innerHTML = concept[imageIndex];
+        document.querySelector('#explanation').innerHTML = explanation[imageIndex];
+        document.querySelector('#main-image').innerHTML = imageMain[imageIndex];
+    })
+
+    dot4.addEventListener('click', function () {
+        imageIndex = 4;
+        document.querySelector('#concept').innerHTML = concept[imageIndex];
+        document.querySelector('#explanation').innerHTML = explanation[imageIndex];
+        document.querySelector('#main-image').innerHTML = imageMain[imageIndex];
+    })
+
+    dot5.addEventListener('click', function () {
+        imageIndex = 5;
+        document.querySelector('#concept').innerHTML = concept[imageIndex];
+        document.querySelector('#explanation').innerHTML = explanation[imageIndex];
+        document.querySelector('#main-image').innerHTML = imageMain[imageIndex];
+    })
+
+    // let slideIndex = 1;
+    // showSlides(slideIndex);
+
+    // // Next/previous controls
+    // function nextImage(n) {
+    //     showSlides(slideIndex + 1);
+    //     $('#concept')[0].innerHTML = $(concept)[slideIndex];
+    //     $('#explanation')[0].innerHTML = $(explanation)[slideIndex];
+    //     $('#main-image')[0].innerHTML = $(imageMain)[slideIndex];
+    // }
+
+    // function previousImage(n) {
+    //     showSlides(slideIndex - 1);
+    //     $('#concept')[0].innerHTML = $(concept)[slideIndex];
+    //     $('#explanation')[0].innerHTML = $(explanation)[slideIndex];
+    //     $('#main-image')[0].innerHTML = $(imageMain)[slideIndex];
+    // }
+
+    // // Thumbnail image controls
+    // function currentSlide(n) {
+    //     showSlides(slideIndex = n);
+    // }
+
+    // function showSlides(n) {
+    //     let i;
+    //     let slides = document.getElementById("thumbnails-grid");
+    //     let dots = document.getElementsByClassName("dot");
+    //     if (n > slides.length) { slideIndex = 1 }
+    //     if (n < 1) { slideIndex = slides.length }
+    //     for (i = 0; i < slides.length; i++) {
+    //         slides[i].style.display = "none";
+    //     }
+    //     for (i = 0; i < dots.length; i++) {
+    //         dots[i].className = dots[i].className.replace(" active", "");
+    //     }
+    //     slides[slideIndex - 1].style.display = "block";
+    //     dots[slideIndex - 1].className += " active";
+    // }
+
+</script>
+
+</html>
